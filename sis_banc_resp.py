@@ -1,13 +1,13 @@
 def menu():
     menu = """
     ============== MENU ==============
-    [d]\tDepositar
-    [s]\tSacar
-    [e]\tExtrato
-    [nc]\tNova Conta
-    [lc]\tListar Contas
-    [nu]\tNovo Usuário
-    [q]\tSair
+    [d] Depositar
+    [s] Sacar
+    [e] Extrato
+    [nc] Nova Conta
+    [lc] Listar Contas
+    [nu] Novo Usuário
+    [q] Sair
     => """
     return input(menu)
 
@@ -40,7 +40,7 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
     else:
         print("=== Operação falhou! O valor informado é inválido. ===")
         
-    return saldo, extrato
+    return saldo, extrato, numero_saques
 
 def exibir_extrato(saldo, /, *, extrato):
     print("\n================ EXTRATO ================")
@@ -50,7 +50,6 @@ def exibir_extrato(saldo, /, *, extrato):
 
 def criar_usuario(usuarios):
     cpf = input("Informe o CPF (somente números): ")
-    
     usuario = filtrar_usuario(cpf, usuarios)
     
     if usuario:
@@ -107,7 +106,7 @@ def main():
             saldo, extrato = depositar(saldo, valor, extrato)
         elif opcao == "s":
             valor = float(input("Informe o valor do saque: "))
-            saldo, extrato = sacar(
+            saldo, extrato, numero_saques = sacar(
                 saldo=saldo,
                 valor=valor,
                 extrato=extrato,
@@ -131,4 +130,4 @@ def main():
         else:
             print("=== Operação inválida, por favor selecione novamente a operação desejada. ===")    
 
-main()        
+main()
